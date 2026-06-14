@@ -1,1 +1,796 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRNKA – čištění a renovace střech a fasád</title>
+<meta name="description" content="MRNKA – renovace, nátěry, impregnace a čištění střech a fasád. Vaše střecha bude jako nová, levněji a rychleji než výměna.">
+<meta property="og:title" content="MRNKA – čištění a renovace střech a fasád">
+<meta property="og:description" content="Renovace, nátěry a čištění střech. Levnější a rychlejší než výměna.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E11D2A;
+  --red-dark:#b8141f;
+  --ink:#141414;
+  --ink-2:#1c1c1c;
+  --ink-soft:#222222;
+  --muted:#6b6b6b;
+  --line:#e6e6e6;
+  --bg:#ffffff;
+  --bg-soft:#f4f4f4;
+  --white:#ffffff;
+  --maxw:1180px;
+  --radius:14px;
+  --shadow:0 18px 50px rgba(0,0,0,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--ink-soft);
+  background:var(--bg);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.display{font-family:'Poppins',sans-serif;line-height:1.12;color:var(--ink)}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.accent{color:var(--red)}
 
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:.95rem;
+  padding:.85rem 1.7rem;border-radius:999px;cursor:pointer;border:2px solid transparent;
+  transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(225,29,42,.35)}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.btn-outline:hover{background:#fff;color:var(--ink);transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
+.btn-lg{padding:1rem 2.1rem;font-size:1rem}
+
+/* ---------- header ---------- */
+.header{position:fixed;top:14px;left:0;right:0;z-index:1000;transition:top .3s}
+.nav{
+  max-width:var(--maxw);margin:0 auto;
+  background:rgba(20,20,20,.82);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:999px;
+  display:flex;align-items:center;gap:1.5rem;
+  padding:.55rem 1.4rem;
+}
+.brand{display:flex;align-items:center;flex:0 0 auto}
+.brand img{height:64px;width:auto}
+.logo-on-dark{filter:none}
+.menu{display:flex;align-items:center;gap:1.4rem;margin-left:auto}
+.menu>li{list-style:none;position:relative}
+.menu a{color:#eaeaea;font-size:.92rem;font-weight:500;font-family:'Poppins';transition:color .15s;white-space:nowrap}
+.menu a:hover{color:var(--red)}
+.has-sub>a::after{content:" ▾";font-size:.7rem;color:#999}
+.submenu{
+  position:absolute;top:140%;left:0;min-width:215px;
+  background:#1c1c1c;border:1px solid rgba(255,255,255,.08);border-radius:12px;
+  padding:.5rem;opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:.18s;box-shadow:var(--shadow);
+}
+.has-sub:hover .submenu{opacity:1;visibility:visible;transform:translateY(0)}
+.submenu li{list-style:none}
+.submenu a{display:block;padding:.55rem .8rem;border-radius:8px;font-size:.88rem}
+.submenu a:hover{background:rgba(225,29,42,.15);color:#fff}
+.phone{display:flex;align-items:center;gap:.7rem;flex:0 0 auto}
+.phone .num{color:#fff;font-family:'Poppins';font-weight:700;font-size:.95rem;text-decoration:underline;text-underline-offset:3px}
+.phone .call{
+  width:42px;height:42px;border-radius:50%;background:var(--red);
+  display:grid;place-items:center;color:#fff;flex:0 0 auto;
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(225,29,42,.5)}70%{box-shadow:0 0 0 12px rgba(225,29,42,0)}100%{box-shadow:0 0 0 0 rgba(225,29,42,0)}}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;margin-left:auto}
+.burger span{width:26px;height:3px;background:#fff;border-radius:2px;transition:.25s}
+
+/* mobile menu panel */
+.mobile-panel{
+  display:none;position:fixed;inset:0;z-index:1500;background:rgba(20,20,20,.98);
+  flex-direction:column;padding:90px 28px 40px;gap:.4rem;
+}
+.mobile-panel.open{display:flex}
+.mobile-panel a{color:#fff;font-family:'Poppins';font-weight:600;font-size:1.3rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-panel .close{position:absolute;top:24px;right:24px;font-size:2rem;color:#fff;background:none;border:0;cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(100deg,rgba(10,10,10,.93) 0%,rgba(15,15,15,.78) 45%,rgba(15,15,15,.35) 100%)}
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:140px 22px 80px;width:100%}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:800;color:#fff;letter-spacing:-.01em}
+.hero p.lead{max-width:520px;margin:1.6rem 0 2.2rem;color:#e3e3e3;font-size:1.08rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-foot{display:flex;align-items:center;gap:1.6rem;margin-top:2.6rem;flex-wrap:wrap}
+.hero-foot .guarantee{font-size:.85rem;color:#cfcfcf;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.socials{display:flex;gap:.7rem}
+.socials a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;color:#fff;transition:.18s}
+.socials a:hover{background:var(--red);border-color:var(--red)}
+
+/* ---------- promo before/after ---------- */
+.promo{background:var(--ink);padding:70px 0}
+.promo-card{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:0;border-radius:18px;overflow:hidden;
+  box-shadow:var(--shadow);background:#222;
+}
+.promo-text{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;color:#fff;background:linear-gradient(135deg,#202020,#161616)}
+.promo-text .eyebrow{color:var(--red);font-weight:700;font-family:'Poppins';letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;margin-bottom:.8rem}
+.promo-text h3{font-size:1.9rem;color:#fff;margin-bottom:.9rem}
+.promo-text p{color:#bdbdbd;margin-bottom:1.6rem}
+.promo-img{position:relative}
+.promo-img img{width:100%;height:100%;object-fit:cover}
+.promo-badge{position:absolute;top:18px;left:18px;background:var(--red);color:#fff;font-weight:700;font-family:'Poppins';font-size:.78rem;padding:.45rem .9rem;border-radius:8px;letter-spacing:.04em}
+.tag-row{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between}
+.tag{background:rgba(0,0,0,.65);color:#fff;font-family:'Poppins';font-weight:700;font-size:.8rem;padding:.35rem .85rem;border-radius:6px;backdrop-filter:blur(4px)}
+
+/* ---------- service split blocks ---------- */
+.svc{padding:84px 0}
+.svc:nth-child(even){background:var(--bg-soft)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.svc-grid.rev .svc-copy{order:2}
+.svc-grid.rev .svc-media{order:1}
+.svc-copy h2{font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:.4rem}
+.svc-copy .sub{color:var(--red);font-weight:600;font-family:'Poppins';font-size:.95rem;margin-bottom:1.2rem;letter-spacing:.01em}
+.svc-copy p{color:var(--muted);margin-bottom:1.3rem;max-width:46ch}
+.feat{list-style:none;margin:0 0 1.7rem}
+.feat li{display:flex;gap:.7rem;align-items:flex-start;padding:.32rem 0;color:var(--ink-soft);font-size:.97rem}
+.feat li::before{content:"";flex:0 0 auto;margin-top:.45rem;width:9px;height:9px;border-radius:2px;background:var(--red);transform:rotate(45deg)}
+.svc-media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3}
+.svc-media img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- four services cards (alternating) ---------- */
+.services-list{padding:30px 0 10px}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:330px}
+.srow .scopy{padding:54px 6%;display:flex;flex-direction:column;justify-content:center}
+.srow .scopy h3{font-size:1.7rem;margin-bottom:.7rem}
+.srow .scopy p{color:var(--muted);margin-bottom:1.4rem;max-width:42ch}
+.srow .smedia img{width:100%;height:100%;object-fit:cover;min-height:280px}
+.srow.rev .scopy{order:2}
+.srow.rev .smedia{order:1}
+.srow:nth-child(odd){background:var(--white)}
+.srow:nth-child(even){background:var(--bg-soft)}
+
+/* ---------- service cards (redesign) ---------- */
+.services2{padding:84px 0;background:var(--white)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.scard{display:grid;grid-template-columns:40% 1fr;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .22s,box-shadow .22s,border-color .22s}
+.scard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.scard .pic{position:relative;overflow:hidden}
+.scard .pic img{width:100%;height:100%;object-fit:cover;min-height:230px;transition:transform .45s}
+.scard:hover .pic img{transform:scale(1.07)}
+.scard .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(20,20,20,.12),transparent 55%)}
+.scard .body{padding:30px 30px;display:flex;flex-direction:column;justify-content:center}
+.scard .tag{align-self:flex-start;background:rgba(225,29,42,.1);color:var(--red);font-family:'Poppins';font-weight:600;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.32rem .75rem;border-radius:7px;margin-bottom:.9rem}
+.scard h3{font-size:1.5rem;margin-bottom:.6rem}
+.scard p{color:var(--muted);font-size:.93rem;margin-bottom:1.2rem}
+.scard .more{color:var(--red);font-family:'Poppins';font-weight:600;font-size:.9rem;display:inline-flex;gap:.4rem;align-items:center;transition:gap .2s}
+.scard:hover .more{gap:.75rem}
+@media(max-width:980px){.cards{grid-template-columns:1fr}.scard{grid-template-columns:1fr}.scard .pic img{min-height:200px}}
+
+/* ---------- benefits ---------- */
+.benefits{padding:84px 0;background:var(--white)}
+.sec-head{text-align:center;margin-bottom:48px}
+.sec-head h2{font-size:clamp(1.9rem,3.5vw,2.6rem)}
+.sec-head .eyebrow{color:var(--red);font-weight:700;font-family:'Poppins';letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;display:block;margin-bottom:.6rem}
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ben{display:flex;gap:1rem;align-items:center;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.5rem;transition:.2s}
+.ben:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.ben .n{font-family:'Poppins';font-weight:800;font-size:1.9rem;color:var(--red);flex:0 0 auto;width:46px;height:46px;display:grid;place-items:center;background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.ben span.t{font-weight:500;font-size:.98rem}
+
+/* ---------- dark stats ---------- */
+.stats{position:relative;color:#fff;padding:92px 0}
+.stats-bg{position:absolute;inset:0;z-index:-2}
+.stats-bg img{width:100%;height:100%;object-fit:cover}
+.stats::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(15,15,15,.94),rgba(15,15,15,.8))}
+.stats-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center}
+.stats-copy h2{color:#fff;font-size:2rem;margin-bottom:1.6rem}
+.stats-copy .block{margin-bottom:1.4rem}
+.stats-copy .block h4{color:#fff;font-size:1.1rem;margin-bottom:.3rem;display:flex;gap:.5rem;align-items:center}
+.stats-copy .block h4::before{content:"";width:10px;height:10px;background:var(--red);border-radius:2px;transform:rotate(45deg)}
+.stats-copy .block p{color:#c4c4c4;font-size:.95rem;padding-left:1rem}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.num{text-align:center}
+.num .v{font-family:'Poppins';font-weight:800;font-size:3rem;color:#fff;line-height:1}
+.num .l{color:var(--red);font-weight:600;font-family:'Poppins';font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;margin-top:.4rem}
+
+/* ---------- about ---------- */
+.about{padding:90px 0;background:var(--white)}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}
+.about-portrait{position:relative;aspect-ratio:3/4;border-radius:var(--radius);background:linear-gradient(160deg,#2a2a2a,#101010);display:grid;place-items:center;overflow:hidden;box-shadow:var(--shadow)}
+.about-portrait .ph-initial{font-family:'Poppins';font-weight:800;font-size:6rem;color:rgba(255,255,255,.08)}
+.about-portrait .ph-note{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#888;font-size:.75rem}
+.about-portrait .sig{position:absolute;bottom:42px;left:0;right:0;text-align:center;font-family:'Poppins';font-style:italic;color:#fff;font-size:1.3rem;opacity:.85}
+.about-copy .eyebrow{color:var(--red);font-weight:700;font-family:'Poppins';letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;display:block;margin-bottom:.6rem}
+.about-copy h2{font-size:2.1rem;margin-bottom:1.2rem}
+.about-copy p{color:var(--muted);margin-bottom:1.1rem}
+
+/* ---------- gallery ---------- */
+.gallery{padding:84px 0;background:var(--bg-soft)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gal-grid a{border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:#ddd}
+.gal-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gal-grid a:hover img{transform:scale(1.08)}
+.center{text-align:center;margin-top:34px}
+
+/* ---------- reviews ---------- */
+.reviews{padding:84px 0;background:var(--white)}
+.rev-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
+.rev-track::-webkit-scrollbar{display:none}
+.rcard{flex:0 0 330px;scroll-snap-align:start;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:1.7rem}
+.rcard .who{font-family:'Poppins';font-weight:700;margin-bottom:.5rem}
+.rcard p{color:var(--muted);font-size:.93rem;margin-bottom:1rem}
+.rcard .g{display:flex;align-items:center;gap:.5rem}
+.rcard .g .glogo{font-family:'Poppins';font-weight:700;font-size:.85rem}
+.rcard .g .glogo .b{color:#4285F4}.rcard .g .glogo .r{color:#EA4335}.rcard .g .glogo .y{color:#FBBC05}.rcard .g .glogo .g2{color:#34A853}
+.stars{color:#f5a623;letter-spacing:1px}
+.rev-nav{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1rem}
+.rev-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:1.1rem;transition:.18s}
+.rev-nav button:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.overall{text-align:center;margin-top:42px}
+.overall .big{font-family:'Poppins';font-weight:800;font-size:3rem;color:var(--ink)}
+.overall .sub{color:var(--muted);font-size:.9rem}
+
+/* ---------- faq ---------- */
+.faq{padding:84px 0;background:var(--bg-soft)}
+.faq-list{max-width:840px;margin:0 auto}
+.qa{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.qa button{width:100%;text-align:left;background:none;border:0;padding:1.2rem 1.4rem;font-family:'Poppins';font-weight:600;font-size:1.02rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;color:var(--ink)}
+.qa button .ic{flex:0 0 auto;color:var(--red);font-size:1.4rem;transition:transform .25s}
+.qa.open button .ic{transform:rotate(45deg)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:.95rem}
+.qa .ans p{padding:0 1.4rem 1.3rem}
+.qa.open .ans{max-height:400px}
+
+/* ---------- contact ---------- */
+.contact{padding:30px 0}
+.contact-grid{display:grid;grid-template-columns:.72fr 1.28fr;align-items:center}
+.contact-media{padding:30px 0 30px 22px}
+.contact-media img{width:100%;height:auto;max-height:430px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)}
+.contact-form{padding:70px 6%}
+.contact-form h2{font-size:2rem;margin-bottom:.6rem}
+.contact-form>p{color:var(--muted);margin-bottom:1.8rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.82rem;font-weight:600;font-family:'Poppins';margin-bottom:.35rem;color:var(--ink-soft)}
+.field input,.field select,.field textarea{
+  width:100%;padding:.8rem .9rem;border:1px solid var(--line);border-radius:9px;font-family:'Inter';font-size:.95rem;background:var(--bg-soft);transition:.15s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);background:#fff;box-shadow:0 0 0 3px rgba(225,29,42,.12)}
+.field textarea{resize:vertical;min-height:90px}
+.gdpr{display:flex;gap:.6rem;align-items:flex-start;font-size:.82rem;color:var(--muted);margin:.4rem 0 1.2rem}
+.gdpr input{margin-top:.25rem}
+
+/* ---------- partners ---------- */
+.partners{padding:60px 0;background:var(--ink);text-align:center}
+.partners h3{color:#fff;font-size:1.4rem;margin-bottom:30px}
+.plogos{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;align-items:center}
+.plogo{font-family:'Poppins';font-weight:700;color:rgba(255,255,255,.4);font-size:1.1rem;letter-spacing:.05em;border:1px dashed rgba(255,255,255,.2);padding:.7rem 1.4rem;border-radius:8px}
+
+/* ---------- footer ---------- */
+.footer{background:#0e0e0e;color:#cfcfcf;padding:64px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding-bottom:46px}
+.footer h4{color:#fff;font-size:1.05rem;margin-bottom:1.1rem}
+.foot-contact li{list-style:none;display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.7rem;font-size:.92rem}
+.foot-contact li .ic{color:var(--red);flex:0 0 auto}
+.foot-links li{list-style:none;margin-bottom:.6rem}
+.foot-links a{font-size:.92rem;transition:.15s}
+.foot-links a:hover{color:var(--red)}
+.foot-brand img{height:54px;margin-bottom:1rem}
+.foot-brand p{font-size:.88rem;color:#9a9a9a;max-width:34ch}
+.foot-socials{display:flex;gap:.6rem;margin-top:1rem}
+.foot-socials a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:#fff;transition:.18s}
+.foot-socials a:hover{background:var(--red);border-color:var(--red)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:#888}
+.foot-bottom a{color:#888}.foot-bottom a:hover{color:#fff}
+
+/* ---------- floating + popups ---------- */
+.fab{position:fixed;right:22px;bottom:22px;z-index:900;display:flex;flex-direction:column;gap:12px}
+.fab a{width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);transition:.18s}
+.fab a:hover{transform:scale(1.08)}
+.fab a.wa{background:#25D366}
+
+.cookie{position:fixed;left:22px;right:22px;bottom:22px;z-index:1200;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:1.2rem 1.4rem;max-width:560px;display:flex;flex-direction:column;gap:.8rem}
+.cookie.hide{display:none}
+.cookie p{font-size:.85rem;color:var(--muted)}
+.cookie .row{display:flex;gap:.6rem;flex-wrap:wrap}
+.cookie .btn{padding:.55rem 1.1rem;font-size:.85rem}
+.cookie .ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+
+.modal{position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,.6);display:none;place-items:center;padding:20px}
+.modal.open{display:grid}
+.modal-card{background:#fff;border-radius:16px;max-width:430px;width:100%;padding:2rem;position:relative;box-shadow:var(--shadow)}
+.modal-card h3{font-size:1.4rem;margin-bottom:.5rem}
+.modal-card .eyebrow{color:var(--red);font-weight:700;font-family:'Poppins';text-transform:uppercase;letter-spacing:.08em;font-size:.75rem}
+.modal-card p{color:var(--muted);font-size:.9rem;margin-bottom:1.2rem}
+.modal-card .x{position:absolute;top:14px;right:16px;background:none;border:0;font-size:1.6rem;cursor:pointer;color:#999}
+
+/* ---------- reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .menu,.phone .num{display:none}
+  .burger{display:flex}
+  .promo-card,.svc-grid,.srow,.stats-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .svc-grid.rev .svc-copy,.svc-grid.rev .svc-media,.srow.rev .scopy,.srow.rev .smedia{order:initial}
+  .srow .smedia img{min-height:240px}
+  .ben-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-media{padding:24px 22px 0}
+  .contact-media img{max-height:300px}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .nums{grid-template-columns:1fr 1fr;gap:22px}
+  .form-row{grid-template-columns:1fr}
+  .hero-inner{padding-top:120px}
+  .promo-text{padding:34px 26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="top">
+  <nav class="wrap nav">
+    <a href="#top" class="brand">
+      <img src="assets/logo.png" alt="MRNKA – čištění střech a fasád" class="logo-on-dark">
+    </a>
+    <ul class="menu">
+      <li><a href="#prumysl">Pro firmy</a></li>
+      <li><a href="#renovace">Renovace</a></li>
+      <li><a href="#impregnace">Impregnace</a></li>
+      <li class="has-sub"><a href="#sluzby">Další služby</a>
+        <ul class="submenu">
+          <li><a href="#cisteni">Nátěry a čištění</a></li>
+          <li><a href="#sluzby">Příprava na fotovoltaiku</a></li>
+        </ul>
+      </li>
+      <li><a href="#kontakt">Ceník</a></li>
+      <li><a href="#kontakt">Konfigurátor</a></li>
+    </ul>
+    <div class="phone">
+      <a href="tel:+420000000000" class="num">+420 XXX XXX XXX</a>
+      <a href="tel:+420000000000" class="call" aria-label="Zavolat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.02l-2.2 2.19z"/></svg>
+      </a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <button class="close" id="closePanel">&times;</button>
+  <a href="#prumysl">Pro firmy</a>
+  <a href="#renovace">Renovace</a>
+  <a href="#impregnace">Impregnace</a>
+  <a href="#cisteni">Nátěry a čištění</a>
+  <a href="#kontakt">Ceník</a>
+  <a href="#kontakt">Konfigurátor</a>
+  <a href="tel:+420000000000" style="color:var(--red)">+420 XXX XXX XXX</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"><img src="assets/hero.png" alt="Renovovaná střecha MRNKA"></div>
+  <div class="hero-inner">
+    <h1>Výměna střechy?<br>Zrenovuj ji!<br>Proč přeplácet?</h1>
+    <p class="lead">Nátěr a renovace střechy je řešení, které je výrazně levnější a rychlejší než výměna. Vaše střecha bude jako nová – vzhledem i pevností. <em>[zástupný text]</em></p>
+    <div class="hero-cta">
+      <a href="#kontakt" class="btn btn-outline btn-lg">Ceník</a>
+      <a href="#kontakt" class="btn btn-red btn-lg">Objednat</a>
+    </div>
+    <div class="hero-foot">
+      <span class="guarantee">Garance kvality již více než XX let</span>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.36 1 .42 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .36-2.2.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42a3.7 3.7 0 01-1.4-.9 3.7 3.7 0 01-.9-1.4c-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.32-.43.17-.74.37-1.06.7-.32.3-.52.62-.7 1.05-.12.3-.28.8-.32 1.7C3.45 8.5 3.45 8.9 3.45 12s0 3.5.07 4.7c.04.9.2 1.4.32 1.7.17.43.37.74.7 1.06.3.32.62.52 1.05.7.3.12.8.28 1.7.32 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.32.43-.17.74-.37 1.06-.7.32-.3.52-.62.7-1.05.12-.3.28-.8.32-1.7.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.32-1.7a2.8 2.8 0 00-.7-1.06 2.8 2.8 0 00-1.05-.7c-.3-.12-.8-.28-1.7-.32C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.15 1.15 0 11-2.3 0 1.15 1.15 0 012.3 0z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 5.5a4.3 4.3 0 01-1-2.5h-3v12.2a2.4 2.4 0 11-2.4-2.4c.2 0 .5 0 .7.1V7.8a5.6 5.6 0 00-.7-.05A5.5 5.5 0 1014.6 13V8.7a7.2 7.2 0 004.2 1.3V7a4.3 4.3 0 01-2.3-1.5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMO BEFORE/AFTER ============ -->
+<section class="promo">
+  <div class="wrap reveal">
+    <div class="promo-card">
+      <div class="promo-text">
+        <span class="eyebrow">Nabídka zdarma</span>
+        <h3>Vaše střecha si zaslouží víc než jen nový odstín</h3>
+        <p>Posledních XX střech do plné kapacity sezóny. Nezávazné nacenění a konzultace barvy zdarma. <em>[zástupný text]</em></p>
+        <a href="#kontakt" class="btn btn-red" style="align-self:flex-start">Nabídka zdarma</a>
+      </div>
+      <div class="promo-img">
+        <span class="promo-badge">PŘED → PO</span>
+        <img src="assets/before-after.png" alt="Střecha před a po renovaci MRNKA">
+        <div class="tag-row"><span class="tag">PŘED</span><span class="tag">PO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAKOVÁNÍ TAŠEK ============ -->
+<section class="svc" id="renovace">
+  <div class="wrap">
+    <div class="svc-grid reveal">
+      <div class="svc-copy">
+        <h2>Lakování střešních tašek</h2>
+        <div class="sub">betonových (cementových) · keramických · engobovaných · glazovaných</div>
+        <p>Každou tašku lakujeme s přesností a pečlivostí. Po dokončení vypadá střecha lépe než nová – a získává i lepší vlastnosti. <em>[zástupný text]</em></p>
+        <ul class="feat">
+          <li>Váš dům získá nový, svěží vzhled</li>
+          <li>Nabízíme tisíce odstínů – konzultace barvy zdarma</li>
+          <li>Odolnost proti špíně, mechu a mrazu</li>
+          <li>Hladká, samočisticí povrchová vrstva</li>
+          <li>Zvýšená ochrana před pronikáním vody</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-red">Zjistěte více</a>
+      </div>
+      <div class="svc-media"><img src="assets/tiles.png" alt="Detail lakované střešní tašky"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAKOVÁNÍ PLECHŮ ============ -->
+<section class="svc">
+  <div class="wrap">
+    <div class="svc-grid rev reveal">
+      <div class="svc-copy">
+        <h2>Lakování plechových střech</h2>
+        <div class="sub">pozinkovaných · hliníkových · polyesterových · teflonových povlaků</div>
+        <p>Máte střechu pokrytou plechem? Uděláme z ní novou a dodáme celému domu svěží vzhled – za zlomek ceny výměny. <em>[zástupný text]</em></p>
+        <ul class="feat">
+          <li>Plech bude hladký a lesklý</li>
+          <li>Čerstvá barva vydrží dlouho</li>
+          <li>Samočisticí povrchová vrstva</li>
+          <li>Na výběr lesk, pololesk nebo satén</li>
+          <li>Dlouhodobá ochrana proti korozi a oxidaci</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-red">Zjistěte více</a>
+      </div>
+      <div class="svc-media"><img src="assets/metal.png" alt="Lakování plechové střechy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ČIŠTĚNÍ ============ -->
+<section class="svc" id="cisteni">
+  <div class="wrap">
+    <div class="svc-grid reveal">
+      <div class="svc-copy">
+        <h2>Čištění střešních tašek</h2>
+        <div class="sub">profesionální vybavení · šetrná technologie · zkušený tým</div>
+        <p>Každá taška může zářit čistotou. Stačí profesionální vybavení, kvalitní materiály a zkušený tým – to vše u nás máte. <em>[zástupný text]</em></p>
+        <ul class="feat">
+          <li>Střecha jako nová</li>
+          <li>Žádný mech, řasy ani bakterie</li>
+          <li>Výměna poškozených tašek</li>
+          <li>Kontrola technického stavu střechy</li>
+          <li>Okamžitý viditelný rozdíl</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-red">Zjistěte více</a>
+      </div>
+      <div class="svc-media"><img src="assets/cleaning.png" alt="Čištění střechy tlakovou technologií"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 SLUŽBY (karty) ============ -->
+<section class="services2" id="sluzby">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Co nabízíme</span>
+      <h2>Naše <span class="accent">služby</span></h2>
+    </div>
+    <div class="cards reveal">
+
+      <article class="scard">
+        <div class="pic"><img src="assets/service-natery.png" alt="Nátěry střech MRNKA"></div>
+        <div class="body">
+          <span class="tag">Tašky i plech</span>
+          <h3>Nátěry</h3>
+          <p>Profesionální lakování betonových i keramických tašek každého typu a kompletní renovace plechových střech. <em>[zástupný text]</em></p>
+          <a href="#kontakt" class="more">Zjistěte více →</a>
+        </div>
+      </article>
+
+      <article class="scard" id="impregnace">
+        <div class="pic"><img src="assets/service-impregnace.png" alt="Impregnace střechy MRNKA"></div>
+        <div class="body">
+          <span class="tag">Ochrana</span>
+          <h3>Impregnace</h3>
+          <p>Prodloužíme životnost střechy a ochráníme ji před vlhkostí. Správná impregnace udrží střechu pevnou po mnoho let. <em>[zástupný text]</em></p>
+          <a href="#kontakt" class="more">Zjistěte více →</a>
+        </div>
+      </article>
+
+      <article class="scard">
+        <div class="pic"><img src="assets/service-renovace.png" alt="Renovace střechy MRNKA"></div>
+        <div class="body">
+          <span class="tag">Kompletně</span>
+          <h3>Renovace střechy</h3>
+          <p>Kompletní renovace taškových i plechových střech – vrátíme vaší střeše vzhled i ochranné vlastnosti. <em>[zástupný text]</em></p>
+          <a href="#kontakt" class="more">Zjistěte více →</a>
+        </div>
+      </article>
+
+      <article class="scard" id="prumysl">
+        <div class="pic"><img src="assets/service-prumysl.png" alt="Renovace průmyslové střechy MRNKA"></div>
+        <div class="body">
+          <span class="tag">Haly a firmy</span>
+          <h3>Průmyslové objekty</h3>
+          <p>Svěřte halu profesionálům. Špičkové průmyslové nátěry obnoví střechu na další desetiletí. <em>[zástupný text]</em></p>
+          <a href="#kontakt" class="more">Zjistěte více →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITY ============ -->
+<section class="benefits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Proč MRNKA</span>
+      <h2>Benefity MRNKA</h2>
+    </div>
+    <div class="ben-grid reveal">
+      <div class="ben"><span class="n">1</span><span class="t">Horká barva – pouze premium průmyslové barvy</span></div>
+      <div class="ben"><span class="n">2</span><span class="t">Záruka XX let</span></div>
+      <div class="ben"><span class="n">3</span><span class="t">Životnost až XX let</span></div>
+      <div class="ben"><span class="n">4</span><span class="t">Nástup do týdne</span></div>
+      <div class="ben"><span class="n">5</span><span class="t">Hotovo do dvou dnů</span></div>
+      <div class="ben"><span class="n">6</span><span class="t">Tisíce odstínů palety RAL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="stats-bg"><img src="assets/service-natery.png" alt=""></div>
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stats-copy">
+        <h2>Kompletní služby v renovaci taškových a plechových střech</h2>
+        <div class="block"><h4>Profesionální lakování a renovace</h4><p>Lakujeme betonové i keramické tašky každého typu a kompletně renovujeme plechové střechy. <em>[zástupný text]</em></p></div>
+        <div class="block"><h4>Široký výběr barev s dlouhou životností</h4><p>Tisíce odstínů palety RAL se stálostí barvy v náročných podmínkách. <em>[zástupný text]</em></p></div>
+        <div class="block"><h4>Nepoužíváme vodou ředitelné barvy</h4><p>Sázíme na kvalitní průmyslové barvy s vysokou odolností. <em>[zástupný text]</em></p></div>
+        <a href="#kontakt" class="btn btn-red">Objednat</a>
+      </div>
+      <div class="nums">
+        <div class="num"><div class="v" data-target="XX">0</div><div class="l">let zkušeností</div></div>
+        <div class="num"><div class="v" data-target="XXX">0</div><div class="l">zákazníků</div></div>
+        <div class="num"><div class="v" data-target="XXXXX">0</div><div class="l">m² nátěru</div></div>
+        <div class="num"><div class="v" data-target="XXXX">0</div><div class="l">litrů barvy</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O NÁS ============ -->
+<section class="about">
+  <div class="wrap">
+    <div class="about-grid reveal">
+      <div class="about-portrait">
+        <span class="ph-initial">M</span>
+        <span class="sig">[ podpis ]</span>
+        <span class="ph-note">[ zástupná fotka zakladatele ]</span>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">Náš příběh</span>
+        <h2>Kompletní služby v renovaci střech</h2>
+        <p>Sem patří osobní příběh zakladatele firmy MRNKA – cesta od začátků až po vybudování spolehlivé firmy specializované na renovace střech. <em>[zástupný text]</em></p>
+        <p>Léta zkušeností, nadšení pro kvalitu a spokojenost klientů na prvním místě. Dnes patří MRNKA mezi silné hráče na trhu. <em>[zástupný text]</em></p>
+        <a href="#kontakt" class="btn btn-red">Objednat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Reference</span><h2>Galerie naší <span class="accent">práce</span></h2></div>
+    <div class="gal-grid reveal">
+      <a href="#"><img src="assets/hero.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/tiles.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/service-natery.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/metal.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/cleaning.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/service-renovace.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/service-impregnace.png" alt="Realizace MRNKA"></a>
+      <a href="#"><img src="assets/service-prumysl.png" alt="Realizace MRNKA"></a>
+    </div>
+    <div class="center"><a href="#" class="btn btn-dark">Zobrazit další</a></div>
+  </div>
+</section>
+
+<!-- ============ RECENZE ============ -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Reference</span><h2>Co říkají <span class="accent">klienti</span>?</h2></div>
+    <div class="rev-track reveal" id="revTrack">
+      <div class="rcard"><div class="who">[ Jméno klienta ]</div><p>Zástupná recenze – sem doplňte skutečné hodnocení spokojeného zákazníka MRNKA. <em>[placeholder]</em></p><div class="g"><span class="glogo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g2">l</span><span class="r">e</span></span> <span class="stars">★★★★★</span></div></div>
+      <div class="rcard"><div class="who">[ Jméno klienta ]</div><p>Zástupná recenze – profesionální přístup, rychlé jednání, perfektní výsledek. <em>[placeholder]</em></p><div class="g"><span class="glogo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g2">l</span><span class="r">e</span></span> <span class="stars">★★★★★</span></div></div>
+      <div class="rcard"><div class="who">[ Jméno klienta ]</div><p>Zástupná recenze – férové jednání a transparentní ceny bez skrytých poplatků. <em>[placeholder]</em></p><div class="g"><span class="glogo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g2">l</span><span class="r">e</span></span> <span class="stars">★★★★★</span></div></div>
+      <div class="rcard"><div class="who">[ Jméno klienta ]</div><p>Zástupná recenze – skvělá spolupráce, vše stihli rychle a precizně. <em>[placeholder]</em></p><div class="g"><span class="glogo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g2">l</span><span class="r">e</span></span> <span class="stars">★★★★☆</span></div></div>
+    </div>
+    <div class="rev-nav"><button id="revPrev" aria-label="Předchozí">‹</button><button id="revNext" aria-label="Další">›</button></div>
+    <div class="overall reveal">
+      <div class="big">X,X <span style="color:#f5a623;font-size:1.6rem">★★★★★</span></div>
+      <div class="sub">Celkové hodnocení · založeno na XXX+ recenzích <em>[placeholder]</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">FAQ</span><h2>Časté dotazy</h2></div>
+    <div class="faq-list reveal">
+      <div class="qa"><button>Je léto, můžete lakovat střechy?<span class="ic">+</span></button><div class="ans"><p>Zástupná odpověď – závisí na teplotě povrchu, rosném bodu a vlhkosti. Průmyslové nátěry zvládají většinu podmínek. <em>[placeholder]</em></p></div></div>
+      <div class="qa"><button>Jak dlouho musím čekat na váš tým?<span class="ic">+</span></button><div class="ans"><p>Zástupná odpověď – termín nástupu doplňte dle skutečnosti. <em>[placeholder]</em></p></div></div>
+      <div class="qa"><button>V jakých okresech poskytujete služby?<span class="ic">+</span></button><div class="ans"><p>Zástupná odpověď – oblast působnosti doplňte dle skutečnosti. <em>[placeholder]</em></p></div></div>
+      <div class="qa"><button>Co si myslíte o vodou ředitelných nátěrech? Jsou trvalé?<span class="ic">+</span></button><div class="ans"><p>Zástupná odpověď – sem patří vysvětlení rozdílu mezi průmyslovými a vodou ředitelnými barvami. <em>[placeholder]</em></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="contact" id="kontakt">
+  <div class="contact-grid">
+    <div class="contact-media"><img src="assets/contact.png" alt="Renovovaná střecha MRNKA"></div>
+    <div class="contact-form">
+      <h2>Neváhejte a napište nám, co potřebujete</h2>
+      <p>Rádi se s vámi spojíme a vyřešíme vše, co bude třeba. <em>[zástupný text]</em></p>
+      <div class="form-row">
+        <div class="field"><label>Jméno</label><input type="text" placeholder="Jméno"></div>
+        <div class="field"><label>Příjmení</label><input type="text" placeholder="Příjmení"></div>
+      </div>
+      <div class="field"><label>Firma</label><input type="text" placeholder="Název firmy (nepovinné)"></div>
+      <div class="form-row">
+        <div class="field"><label>E-mail</label><input type="email" placeholder="vas@email.cz"></div>
+        <div class="field"><label>Telefon</label><input type="tel" placeholder="+420 XXX XXX XXX"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Adresa</label><input type="text" placeholder="Ulice a č.p."></div>
+        <div class="field"><label>Město</label><input type="text" placeholder="Město"></div>
+      </div>
+      <div class="field"><label>Mám zájem o</label>
+        <select><option>Vyberte…</option><option>Krytina</option><option>Plech</option><option>Taška</option><option>Jiné</option></select>
+      </div>
+      <div class="field"><label>Zpráva</label><textarea placeholder="Napište nám, co potřebujete…"></textarea></div>
+      <label class="gdpr"><input type="checkbox"> Souhlasím se zpracováním osobních údajů pro účely vyřízení poptávky. <em>[GDPR text]</em></label>
+      <button class="btn btn-red btn-lg" type="button" onclick="alert('Demo formulář – odeslání zde napojíte na svůj e-mail / CRM.')">Odeslat poptávku</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.png" alt="MRNKA logo" class="logo-on-dark">
+        <p>Renovace, nátěry, impregnace a čištění střech a fasád. <em>[zástupný text]</em></p>
+        <div class="foot-socials">
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.36 1 .42 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .36-2.2.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42a3.7 3.7 0 01-1.4-.9 3.7 3.7 0 01-.9-1.4c-.17-.4-.36-1-.42-2.2-.07-1.3-.07-1.7-.07-4.9s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 5.5a4.3 4.3 0 01-1-2.5h-3v12.2a2.4 2.4 0 11-2.4-2.4c.2 0 .5 0 .7.1V7.8a5.6 5.6 0 00-.7-.05A5.5 5.5 0 1014.6 13V8.7a7.2 7.2 0 004.2 1.3V7a4.3 4.3 0 01-2.3-1.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Kontaktní údaje</h4>
+        <ul class="foot-contact">
+          <li><span class="ic">📍</span> Ulice 000/00, 000 00 Město</li>
+          <li><span class="ic">📞</span> Kalkulace: +420 XXX XXX XXX</li>
+          <li><span class="ic">📞</span> Obchod: +420 XXX XXX XXX</li>
+          <li><span class="ic">✉️</span> info@mrnka.cz</li>
+          <li><span class="ic">🏢</span> IČO: XXXXXXXX</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rozcestník</h4>
+        <ul class="foot-links">
+          <li><a href="#prumysl">Pro firmy</a></li>
+          <li><a href="#renovace">Renovace</a></li>
+          <li><a href="#impregnace">Impregnace</a></li>
+          <li><a href="#cisteni">Nátěry a čištění</a></li>
+          <li><a href="#kontakt">Ceník</a></li>
+          <li><a href="#kontakt">Konfigurátor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MRNKA · Všechna práva vyhrazena</span>
+      <span><a href="#">Zpracování osobních údajů</a> · <a href="#">Cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING ============ -->
+<div class="fab">
+  <a class="wa" href="#" aria-label="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M.06 24l1.7-6.16A11.86 11.86 0 010 11.9C0 5.34 5.36 0 11.95 0a11.9 11.9 0 018.4 3.48 11.78 11.78 0 013.48 8.4c0 6.56-5.36 11.9-11.94 11.9a12 12 0 01-5.7-1.45L.06 24zm6.6-3.8c1.66.99 3.25 1.58 5.3 1.58 5.45 0 9.9-4.42 9.9-9.88 0-5.46-4.45-9.9-9.9-9.9-5.46 0-9.9 4.44-9.9 9.9 0 2.13.62 3.72 1.66 5.39l-1 3.66 3.94-1.04zm11.2-4.1c-.07-.12-.27-.2-.56-.34-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.75-.72 2-1.41.24-.69.24-1.28.17-1.41z"/></svg></a>
+  <a href="tel:+420000000000" aria-label="Zavolat"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.02l-2.2 2.19z"/></svg></a>
+</div>
+
+<!-- ============ COOKIE ============ -->
+<div class="cookie" id="cookie">
+  <p><strong>Cookies.</strong> Používáme cookies pro správné fungování webu a analýzu návštěvnosti. <em>[zástupný GDPR text]</em></p>
+  <div class="row">
+    <button class="btn btn-red" onclick="document.getElementById('cookie').classList.add('hide')">Přijmout</button>
+    <button class="btn ghost" onclick="document.getElementById('cookie').classList.add('hide')">Odmítnout</button>
+    <button class="btn ghost" onclick="document.getElementById('cookie').classList.add('hide')">Předvolby</button>
+  </div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="x" onclick="document.getElementById('modal').classList.remove('open')">&times;</button>
+    <span class="eyebrow">Nacenění zdarma</span>
+    <h3>Doručíme své střeše nový život</h3>
+    <p>Nezávazná a rychlá cenová nabídka – satelitním zaměřením nebo přímo na místě. <em>[zástupný text]</em></p>
+    <div class="field"><input type="text" placeholder="Jméno"></div>
+    <div class="field"><input type="email" placeholder="E-mail"></div>
+    <div class="field"><input type="tel" placeholder="Telefon"></div>
+    <label class="gdpr"><input type="checkbox"> Souhlasím se zpracováním osobních údajů. <em>[GDPR]</em></label>
+    <button class="btn btn-red btn-lg" style="width:100%" type="button" onclick="document.getElementById('modal').classList.remove('open');alert('Demo – napojte na svůj systém.')">Odeslat poptávku</button>
+  </div>
+</div>
+
+<script>
+// mobile menu
+const burger=document.getElementById('burger'),panel=document.getElementById('mobilePanel');
+burger.addEventListener('click',()=>panel.classList.add('open'));
+document.getElementById('closePanel').addEventListener('click',()=>panel.classList.remove('open'));
+panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>panel.classList.remove('open')));
+
+// faq accordion
+document.querySelectorAll('.qa button').forEach(b=>{
+  b.addEventListener('click',()=>b.parentElement.classList.toggle('open'));
+});
+
+// reviews scroll
+const track=document.getElementById('revTrack');
+document.getElementById('revNext').addEventListener('click',()=>track.scrollBy({left:350,behavior:'smooth'}));
+document.getElementById('revPrev').addEventListener('click',()=>track.scrollBy({left:-350,behavior:'smooth'}));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// count up
+function countUp(el){
+  const raw=el.dataset.target; // may contain X placeholders
+  if(/[^0-9]/.test(raw)){el.textContent=raw;return;} // keep placeholders like XX
+  const t=+raw;let c=0;const step=Math.max(1,Math.ceil(t/60));
+  const i=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(i);}el.textContent=c.toLocaleString('cs-CZ');},25);
+}
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.num .v').forEach(el=>cio.observe(el));
+
+// promo modal auto-open after delay (demo)
+setTimeout(()=>{ if(!sessionStorage.getItem('m')){document.getElementById('modal').classList.add('open');sessionStorage.setItem('m','1');} },6000);
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')e.target.classList.remove('open');});
+</script>
+</body>
+</html>
